@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Jobs",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "job_title": {
+      "type": "string",
+      "required": true
+    },
+    "job_type": {
+      "type": "enumeration",
+      "enum": [
+        "Long Term",
+        "Short Term",
+        "Consulting"
+      ],
+      "required": true
+    },
+    "work_place": {
+      "type": "enumeration",
+      "enum": [
+        "Onsite",
+        "Remote",
+        "Hybrid"
+      ],
+      "required": true
+    },
+    "min_experience_years": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "max_experience_years": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "min_salary": {
+      "type": "biginteger"
+    },
+    "max_salary": {
+      "type": "biginteger"
+    },
+    "job_requirements": {
+      "type": "text",
+      "required": true
+    },
+    "job_description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
