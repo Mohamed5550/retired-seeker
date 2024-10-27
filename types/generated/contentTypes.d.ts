@@ -22,6 +22,15 @@ export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
+    users: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+    saved_jobs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::saved-job.saved-job'
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -76,6 +85,11 @@ export interface ApiJobJob extends Struct.CollectionTypeSchema {
     max_salary: Schema.Attribute.BigInteger;
     job_requirements: Schema.Attribute.Text & Schema.Attribute.Required;
     job_description: Schema.Attribute.Text & Schema.Attribute.Required;
+    industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
+    skills: Schema.Attribute.Text & Schema.Attribute.Required;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
+    city: Schema.Attribute.String;
+    keywords: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -85,6 +99,38 @@ export interface ApiJobJob extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSavedJobSavedJob extends Struct.CollectionTypeSchema {
+  collectionName: 'saved_jobs';
+  info: {
+    singularName: 'saved-job';
+    pluralName: 'saved-jobs';
+    displayName: 'saved_jobs';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::saved-job.saved-job'
+    > &
       Schema.Attribute.Private;
   };
 }
@@ -573,6 +619,30 @@ export interface PluginUsersPermissionsUser
     company_name: Schema.Attribute.String;
     user_type: Schema.Attribute.Enumeration<['employee', 'company']> &
       Schema.Attribute.Required;
+    cover_image: Schema.Attribute.Media<'images' | 'files'>;
+    photo: Schema.Attribute.Media<'files' | 'images'>;
+    linkedin_url: Schema.Attribute.Text;
+    faceook_url: Schema.Attribute.Text;
+    twitter_url: Schema.Attribute.Text;
+    instagram_url: Schema.Attribute.Text;
+    website_url: Schema.Attribute.String;
+    industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
+    about_company: Schema.Attribute.Text;
+    birth_year: Schema.Attribute.Integer;
+    birth_month: Schema.Attribute.Integer;
+    birth_day: Schema.Attribute.Integer;
+    gender: Schema.Attribute.Enumeration<['male', 'female']>;
+    cv: Schema.Attribute.Media<'files', true>;
+    work_experience: Schema.Attribute.JSON;
+    education_degree: Schema.Attribute.String;
+    schools: Schema.Attribute.JSON;
+    certificates: Schema.Attribute.JSON;
+    saved_jobs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::saved-job.saved-job'
+    >;
+    phone_number: Schema.Attribute.String;
+    alternative_phone_number: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -963,6 +1033,7 @@ declare module '@strapi/strapi' {
     export interface ContentTypeSchemas {
       'api::industry.industry': ApiIndustryIndustry;
       'api::job.job': ApiJobJob;
+      'api::saved-job.saved-job': ApiSavedJobSavedJob;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

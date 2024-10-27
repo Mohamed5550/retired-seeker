@@ -86,6 +86,96 @@
         "company"
       ],
       "required": true
+    },
+    "cover_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "linkedin_url": {
+      "type": "text"
+    },
+    "faceook_url": {
+      "type": "text"
+    },
+    "twitter_url": {
+      "type": "text"
+    },
+    "instagram_url": {
+      "type": "text"
+    },
+    "website_url": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::industry.industry",
+      "inversedBy": "users"
+    },
+    "about_company": {
+      "type": "text"
+    },
+    "birth_year": {
+      "type": "integer"
+    },
+    "birth_month": {
+      "type": "integer"
+    },
+    "birth_day": {
+      "type": "integer"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "cv": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "work_experience": {
+      "type": "json"
+    },
+    "education_degree": {
+      "type": "string"
+    },
+    "schools": {
+      "type": "json"
+    },
+    "certificates": {
+      "type": "json"
+    },
+    "saved_jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::saved-job.saved-job",
+      "mappedBy": "user"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "alternative_phone_number": {
+      "type": "string"
     }
   }
 }

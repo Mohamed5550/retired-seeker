@@ -22,6 +22,24 @@
         }
       },
       "type": "string"
+    },
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job",
+      "mappedBy": "industry"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "industry"
+    },
+    "saved_jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::saved-job.saved-job",
+      "mappedBy": "industry"
     }
   }
 }

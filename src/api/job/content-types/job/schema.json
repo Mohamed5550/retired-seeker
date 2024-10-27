@@ -57,6 +57,26 @@
     "job_description": {
       "type": "text",
       "required": true
+    },
+    "industry": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::industry.industry",
+      "inversedBy": "jobs"
+    },
+    "skills": {
+      "type": "text",
+      "required": true
+    },
+    "country": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "string"
     }
   }
 }
