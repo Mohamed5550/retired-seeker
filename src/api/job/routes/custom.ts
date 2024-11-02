@@ -26,6 +26,15 @@ export default {
                 prefix: "",
                 policies: []
             }
+        },
+        {
+            method: "GET",
+            path: "/jobs/search",
+            handler: 'job.search',
+            config: {
+                prefix: "",
+                policies: []
+            }
         }
     ]
 }

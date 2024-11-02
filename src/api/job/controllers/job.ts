@@ -13,7 +13,7 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
         const updatedResponse = await strapi.entityService.update('api::job.job', response.data.id, {
             data: {
                 user: id,
-                created_by_user: ctx.state.user.documentId
+                created_by_user: id
             }
         })
         return updatedResponse;
@@ -64,6 +64,45 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
             }
         })
         return updatedResponse;
+    },
+
+    async search(ctx) {
+        const query = ctx.query.query as string;
+        const response = await strapi.documents('api::job.job').findMany({
+            filters: {
+                $or: [
+                    {
+                        job_title: {
+                            $contains: query
+                        }
+                    },
+                    {
+                        job_description: {
+                            $contains: query
+                        }
+                    },
+                    {
+                        job_requirements: {
+                            $contains: query
+                        }
+                    },
+                    {
+                        skills: {
+                            $contains: query
+                        }
+                    },
+                    {
+                        keywords: {
+                            $contains: query
+                        },
+                    }
+                ]
+            },
+            limit: 10,
+            start: 0
+        })
+    
+        return response;
     },
     
   })
