@@ -108,7 +108,7 @@
     "linkedin_url": {
       "type": "text"
     },
-    "faceook_url": {
+    "facebook_url": {
       "type": "text"
     },
     "twitter_url": {
@@ -159,23 +159,71 @@
     "education_degree": {
       "type": "string"
     },
-    "schools": {
-      "type": "json"
-    },
-    "certificates": {
-      "type": "json"
-    },
-    "saved_jobs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::saved-job.saved-job",
-      "mappedBy": "user"
-    },
     "phone_number": {
       "type": "string"
     },
     "alternative_phone_number": {
       "type": "string"
+    },
+    "country": {
+      "type": "string",
+      "required": false
+    },
+    "city": {
+      "type": "string"
+    },
+    "founded_year": {
+      "type": "string"
+    },
+    "experience_in_years": {
+      "type": "integer"
+    },
+    "graduation_certificate": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "experiences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::experience.experience",
+      "mappedBy": "user"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "user"
+    },
+    "schools": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::school.school",
+      "mappedBy": "users_permissions_user"
+    },
+    "certificates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificate.certificate",
+      "mappedBy": "user"
+    },
+    "saved_jobs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::job.job",
+      "inversedBy": "saved_jobs_users"
+    },
+    "created_jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job",
+      "mappedBy": "user"
     }
   }
 }

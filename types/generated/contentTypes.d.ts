@@ -1,140 +1,5 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
-export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
-  collectionName: 'industries';
-  info: {
-    singularName: 'industry';
-    pluralName: 'industries';
-    displayName: 'Industries';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    name: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
-    users: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::users-permissions.user'
-    >;
-    saved_jobs: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::saved-job.saved-job'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::industry.industry'
-    >;
-  };
-}
-
-export interface ApiJobJob extends Struct.CollectionTypeSchema {
-  collectionName: 'jobs';
-  info: {
-    singularName: 'job';
-    pluralName: 'jobs';
-    displayName: 'Jobs';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    job_title: Schema.Attribute.String & Schema.Attribute.Required;
-    job_type: Schema.Attribute.Enumeration<
-      ['Long Term', 'Short Term', 'Consulting']
-    > &
-      Schema.Attribute.Required;
-    work_place: Schema.Attribute.Enumeration<['Onsite', 'Remote', 'Hybrid']> &
-      Schema.Attribute.Required;
-    min_experience_years: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    max_experience_years: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    min_salary: Schema.Attribute.BigInteger;
-    max_salary: Schema.Attribute.BigInteger;
-    job_requirements: Schema.Attribute.Text & Schema.Attribute.Required;
-    job_description: Schema.Attribute.Text & Schema.Attribute.Required;
-    industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
-    skills: Schema.Attribute.Text & Schema.Attribute.Required;
-    country: Schema.Attribute.String & Schema.Attribute.Required;
-    city: Schema.Attribute.String;
-    keywords: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiSavedJobSavedJob extends Struct.CollectionTypeSchema {
-  collectionName: 'saved_jobs';
-  info: {
-    singularName: 'saved-job';
-    pluralName: 'saved-jobs';
-    displayName: 'saved_jobs';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::saved-job.saved-job'
-    > &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -622,7 +487,7 @@ export interface PluginUsersPermissionsUser
     cover_image: Schema.Attribute.Media<'images' | 'files'>;
     photo: Schema.Attribute.Media<'files' | 'images'>;
     linkedin_url: Schema.Attribute.Text;
-    faceook_url: Schema.Attribute.Text;
+    facebook_url: Schema.Attribute.Text;
     twitter_url: Schema.Attribute.Text;
     instagram_url: Schema.Attribute.Text;
     website_url: Schema.Attribute.String;
@@ -635,14 +500,28 @@ export interface PluginUsersPermissionsUser
     cv: Schema.Attribute.Media<'files', true>;
     work_experience: Schema.Attribute.JSON;
     education_degree: Schema.Attribute.String;
-    schools: Schema.Attribute.JSON;
-    certificates: Schema.Attribute.JSON;
-    saved_jobs: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::saved-job.saved-job'
-    >;
     phone_number: Schema.Attribute.String;
     alternative_phone_number: Schema.Attribute.String;
+    country: Schema.Attribute.String;
+    city: Schema.Attribute.String;
+    founded_year: Schema.Attribute.String;
+    experience_in_years: Schema.Attribute.Integer;
+    graduation_certificate: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    experiences: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::experience.experience'
+    >;
+    skills: Schema.Attribute.Relation<'oneToMany', 'api::skill.skill'>;
+    schools: Schema.Attribute.Relation<'oneToMany', 'api::school.school'>;
+    certificates: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificate.certificate'
+    >;
+    saved_jobs: Schema.Attribute.Relation<'manyToMany', 'api::job.job'>;
+    created_jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -655,6 +534,257 @@ export interface PluginUsersPermissionsUser
       'oneToMany',
       'plugin::users-permissions.user'
     > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCertificateCertificate extends Struct.CollectionTypeSchema {
+  collectionName: 'certificates';
+  info: {
+    singularName: 'certificate';
+    pluralName: 'certificates';
+    displayName: 'certificates';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cert_name: Schema.Attribute.String;
+    organization: Schema.Attribute.String;
+    additional_info: Schema.Attribute.String;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificate.certificate'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiExperienceExperience extends Struct.CollectionTypeSchema {
+  collectionName: 'experiences';
+  info: {
+    singularName: 'experience';
+    pluralName: 'experiences';
+    displayName: 'experiences';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    type: Schema.Attribute.Enumeration<
+      ['Long Term', 'Short Term', 'Consulting']
+    >;
+    title: Schema.Attribute.String;
+    company_name: Schema.Attribute.String;
+    start_year: Schema.Attribute.BigInteger;
+    start_month: Schema.Attribute.Integer;
+    end_year: Schema.Attribute.BigInteger;
+    end_month: Schema.Attribute.Integer;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::experience.experience'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
+  collectionName: 'industries';
+  info: {
+    singularName: 'industry';
+    pluralName: 'industries';
+    displayName: 'Industries';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
+    users: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::industry.industry'
+    >;
+  };
+}
+
+export interface ApiJobJob extends Struct.CollectionTypeSchema {
+  collectionName: 'jobs';
+  info: {
+    singularName: 'job';
+    pluralName: 'jobs';
+    displayName: 'Jobs';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    job_title: Schema.Attribute.String & Schema.Attribute.Required;
+    job_type: Schema.Attribute.Enumeration<
+      ['Long Term', 'Short Term', 'Consulting']
+    > &
+      Schema.Attribute.Required;
+    work_place: Schema.Attribute.Enumeration<['Onsite', 'Remote', 'Hybrid']> &
+      Schema.Attribute.Required;
+    min_experience_years: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    max_experience_years: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    min_salary: Schema.Attribute.BigInteger;
+    max_salary: Schema.Attribute.BigInteger;
+    job_requirements: Schema.Attribute.Text & Schema.Attribute.Required;
+    job_description: Schema.Attribute.Text & Schema.Attribute.Required;
+    industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
+    skills: Schema.Attribute.Text & Schema.Attribute.Required;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
+    city: Schema.Attribute.String;
+    keywords: Schema.Attribute.String;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    saved_jobs_users: Schema.Attribute.Relation<
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    created_by_user: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSchoolSchool extends Struct.CollectionTypeSchema {
+  collectionName: 'schools';
+  info: {
+    singularName: 'school';
+    pluralName: 'schools';
+    displayName: 'schools';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    level: Schema.Attribute.String & Schema.Attribute.Required;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
+    university: Schema.Attribute.String;
+    additional_info: Schema.Attribute.Text;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::school.school'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
+  collectionName: 'skills';
+  info: {
+    singularName: 'skill';
+    pluralName: 'skills';
+    displayName: 'skills';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    skill_name: Schema.Attribute.String & Schema.Attribute.Required;
+    experience_in_years: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::skill.skill'> &
       Schema.Attribute.Private;
   };
 }
@@ -1031,9 +1161,6 @@ export interface AdminTransferTokenPermission
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
-      'api::industry.industry': ApiIndustryIndustry;
-      'api::job.job': ApiJobJob;
-      'api::saved-job.saved-job': ApiSavedJobSavedJob;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -1044,6 +1171,12 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::certificate.certificate': ApiCertificateCertificate;
+      'api::experience.experience': ApiExperienceExperience;
+      'api::industry.industry': ApiIndustryIndustry;
+      'api::job.job': ApiJobJob;
+      'api::school.school': ApiSchoolSchool;
+      'api::skill.skill': ApiSkillSkill;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

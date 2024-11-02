@@ -77,6 +77,21 @@
     },
     "keywords": {
       "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "created_jobs"
+    },
+    "saved_jobs_users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "saved_jobs"
+    },
+    "created_by_user": {
+      "type": "string"
     }
   }
 }
