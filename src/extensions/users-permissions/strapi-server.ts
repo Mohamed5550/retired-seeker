@@ -112,6 +112,7 @@ module.exports = (plugin) => {
                 }
             );
         }
+        
         if(location) {
             filters.push(
                 {
