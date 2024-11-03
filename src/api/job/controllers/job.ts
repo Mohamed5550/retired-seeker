@@ -7,7 +7,7 @@ import { factories } from '@strapi/strapi'
 export default factories.createCoreController('api::job.job', ({ strapi }) =>  ({
 
     async create(ctx) {
-        const {id} = ctx.state.user;
+        const id = ctx.state.user.id.toString();
     
         const response = await super.create(ctx);
         const updatedResponse = await strapi.entityService.update('api::job.job', response.data.id, {
@@ -68,38 +68,58 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
 
     async search(ctx) {
         const query = ctx.query.query as string;
-        const response = await strapi.documents('api::job.job').findMany({
-            filters: {
+        const jobType = ctx.query.job_type;
+        const workPlace = ctx.query.work_place  ;
+        let filters = [];
+
+        if(jobType) {
+            filters.push({
+                job_type: jobType
+            });
+        }
+        if(workPlace) {
+            filters.push({
+                work_place: workPlace
+            })
+        }
+        
+        filters.push(
+            {
                 $or: [
                     {
                         job_title: {
-                            $contains: query
+                            containsi: query
                         }
                     },
                     {
                         job_description: {
-                            $contains: query
+                            containsi: query
                         }
                     },
                     {
                         job_requirements: {
-                            $contains: query
+                            containsi: query
                         }
                     },
                     {
                         skills: {
-                            $contains: query
+                            containsi: query
                         }
                     },
                     {
                         keywords: {
-                            $contains: query
+                            containsi: query
                         },
                     }
                 ]
+            }
+        );
+        const response = await strapi.documents('api::job.job').findMany({
+            filters: {
+                $and: filters
             },
-            limit: 10,
-            start: 0
+            offset: 0, 
+            limit: 5,
         })
     
         return response;
