@@ -9,7 +9,7 @@ export default factories.createCoreController('api::school.school', ({ strapi })
         const {id} = ctx.state.user;
     
         const response = await super.create(ctx);
-        const updatedResponse = await strapi.entityService.update('api::skill.skill', response.data.id, {
+        const updatedResponse = await strapi.entityService.update('api::school.school', response.data.id, {
             data: {
                 user: id
             }
@@ -19,7 +19,7 @@ export default factories.createCoreController('api::school.school', ({ strapi })
     
     async my(ctx) {
         const { id } = ctx.state.user;
-        const response = await strapi.documents('api::skill.skill').findMany({
+        const response = await strapi.documents('api::school.school').findMany({
             filters: {
                 user: {
                     id: id

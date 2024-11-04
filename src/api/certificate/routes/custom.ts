@@ -2,7 +2,7 @@ export default {
     routes: [
         {
             method: "GET",
-            path: "/certificates/my",
+            path: "/certificate/my",
             handler: 'certificate.my',
             config: {
                 prefix: "",

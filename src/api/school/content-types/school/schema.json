@@ -4,7 +4,8 @@
   "info": {
     "singularName": "school",
     "pluralName": "schools",
-    "displayName": "schools"
+    "displayName": "schools",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,7 +26,7 @@
     "additional_info": {
       "type": "text"
     },
-    "users_permissions_user": {
+    "user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",

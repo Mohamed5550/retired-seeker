@@ -33,5 +33,8 @@
   },
   "strapi": {
     "uuid": "cc9dc8f4-2059-49ca-9cef-e98787a7c4bc"
+  },
+  "resolutions": {
+    "@koa/cors": "3.4.3"
   }
 }

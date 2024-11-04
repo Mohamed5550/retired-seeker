@@ -3,18 +3,13 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      origin: "http://localhost:3000",  // Explicitly allow localhost for development
-      headers: "*",
-      methods: "*",
+      origin: '*',
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+      credentials: true,
     },
   },
-  {
-    name: 'strapi::security',
-    config: {
-      contentSecurityPolicy: false,
-      cors: false
-    }
-  },
+  'strapi::security',
   'strapi::poweredBy',
   'strapi::logger',
   'strapi::query',

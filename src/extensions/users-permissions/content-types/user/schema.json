@@ -201,12 +201,6 @@
       "target": "api::skill.skill",
       "mappedBy": "user"
     },
-    "schools": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::school.school",
-      "mappedBy": "users_permissions_user"
-    },
     "certificates": {
       "type": "relation",
       "relation": "oneToMany",
@@ -223,6 +217,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::job.job",
+      "mappedBy": "user"
+    },
+    "schools": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::school.school",
       "mappedBy": "user"
     }
   }

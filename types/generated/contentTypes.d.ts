@@ -515,13 +515,13 @@ export interface PluginUsersPermissionsUser
       'api::experience.experience'
     >;
     skills: Schema.Attribute.Relation<'oneToMany', 'api::skill.skill'>;
-    schools: Schema.Attribute.Relation<'oneToMany', 'api::school.school'>;
     certificates: Schema.Attribute.Relation<
       'oneToMany',
       'api::certificate.certificate'
     >;
     saved_jobs: Schema.Attribute.Relation<'manyToMany', 'api::job.job'>;
     created_jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
+    schools: Schema.Attribute.Relation<'oneToMany', 'api::school.school'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -728,6 +728,7 @@ export interface ApiSchoolSchool extends Struct.CollectionTypeSchema {
     singularName: 'school';
     pluralName: 'schools';
     displayName: 'schools';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -737,7 +738,7 @@ export interface ApiSchoolSchool extends Struct.CollectionTypeSchema {
     country: Schema.Attribute.String & Schema.Attribute.Required;
     university: Schema.Attribute.String;
     additional_info: Schema.Attribute.Text;
-    users_permissions_user: Schema.Attribute.Relation<
+    user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
     >;
