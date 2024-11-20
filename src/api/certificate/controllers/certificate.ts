@@ -9,7 +9,8 @@ export default factories.createCoreController('api::certificate.certificate', ({
         const {id} = ctx.state.user;
     
         const response = await super.create(ctx);
-        const updatedResponse = await strapi.entityService.update('api::certificate.certificate', response.data.id, {
+        const updatedResponse = await strapi.db.query('api::certificate.certificate').update({
+            where: { id: response.data.id },
             data: {
                 user: id
             }

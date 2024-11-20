@@ -36,27 +36,27 @@ module.exports = (plugin) => {
                     $or: [
                         {
                             job_title: {
-                                containsi: query
+                                $containsi: query
                             }
                         },
                         {
                             job_description: {
-                                containsi: query
+                                $containsi: query
                             }
                         },
                         {
                             job_requirements: {
-                                containsi: query
+                                $containsi: query
                             }
                         },
                         {
                             skills: {
-                                containsi: query
+                                $containsi: query
                             }
                         },
                         {
                             keywords: {
-                                containsi: query
+                                $containsi: query
                             },
                         }
                     ]
@@ -87,17 +87,17 @@ module.exports = (plugin) => {
                 $or: [
                     {
                         first_name: {
-                            containsi: query
+                            $containsi: query
                         }
                     },
                     {
                         last_name: {
-                            containsi: query
+                            $containsi: query
                         }
                     },
                     {
                         job_title: {
-                            containsi: query
+                            $containsi: query
                         }
                     }
                 ]
@@ -120,13 +120,30 @@ module.exports = (plugin) => {
                 }
             );
         }
+        var start = 1;
+        var limit = 10;
+
+        if(ctx.query.pagination?.pageSize) {
+            limit = ctx.query.pagination.pageSize;
+        }
+        
+        if(ctx.query.pagination?.page) {
+            start = ctx.query.pagination.page;
+        }
+
+        start --;
+        start *= limit;
+
         const users = await strapi.documents("plugin::users-permissions.user").findMany({
             filters: {
                 $and : filters
             },
             populate: {
-                photo: true
-            }
+                photo: true,
+                experiences: true
+            },
+            limit: limit,
+            start: start
         });
         return users;
     }

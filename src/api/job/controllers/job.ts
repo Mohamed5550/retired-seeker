@@ -10,12 +10,13 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
         const id = ctx.state.user.id.toString();
     
         const response = await super.create(ctx);
-        const updatedResponse = await strapi.entityService.update('api::job.job', response.data.id, {
+        const updatedResponse = await strapi.db.query('api::job.job').update({
+            where: { id: response.data.id },
             data: {
                 user: id,
                 created_by_user: id
-            }
-        })
+            },
+        });
         return updatedResponse;
     },
     
@@ -88,38 +89,54 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
                 $or: [
                     {
                         job_title: {
-                            containsi: query
+                            $containsi: query
                         }
                     },
                     {
                         job_description: {
-                            containsi: query
+                            $containsi: query
                         }
                     },
                     {
                         job_requirements: {
-                            containsi: query
+                            $containsi: query
                         }
                     },
                     {
                         skills: {
-                            containsi: query
+                            $containsi: query
                         }
                     },
                     {
                         keywords: {
-                            containsi: query
+                            $containsi: query
                         },
                     }
                 ]
             }
         );
+        var start = 1;
+        var limit = 10;
+
+        const pagination = ctx.query.pagination as { pageSize?: number; page?: number };
+
+        if(pagination?.pageSize) {
+            limit = pagination.pageSize;
+        }
+        
+        if(pagination?.page) {
+            start = pagination.page;
+        }
+
+        start --;
+        start *= limit;
+
         const response = await strapi.documents('api::job.job').findMany({
             filters: {
                 $and: filters
             },
-            offset: 0, 
-            limit: 5,
+            limit: limit,
+            start: start
         })
     
         return response;

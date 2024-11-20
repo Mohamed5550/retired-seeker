@@ -8,18 +8,21 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "cert_name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "organization": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "additional_info": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "user": {
       "type": "relation",

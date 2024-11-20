@@ -4,10 +4,11 @@
   "info": {
     "singularName": "industry",
     "pluralName": "industries",
-    "displayName": "Industries"
+    "displayName": "Industries",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -21,7 +22,8 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "jobs": {
       "type": "relation",

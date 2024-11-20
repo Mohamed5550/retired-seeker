@@ -547,12 +547,12 @@ export interface ApiCertificateCertificate extends Struct.CollectionTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    cert_name: Schema.Attribute.String;
-    organization: Schema.Attribute.String;
-    additional_info: Schema.Attribute.String;
+    cert_name: Schema.Attribute.String & Schema.Attribute.Required;
+    organization: Schema.Attribute.String & Schema.Attribute.Required;
+    additional_info: Schema.Attribute.String & Schema.Attribute.Required;
     user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
@@ -582,18 +582,19 @@ export interface ApiExperienceExperience extends Struct.CollectionTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     type: Schema.Attribute.Enumeration<
       ['Long Term', 'Short Term', 'Consulting']
-    >;
-    title: Schema.Attribute.String;
-    company_name: Schema.Attribute.String;
-    start_year: Schema.Attribute.BigInteger;
-    start_month: Schema.Attribute.Integer;
-    end_year: Schema.Attribute.BigInteger;
-    end_month: Schema.Attribute.Integer;
+    > &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    company_name: Schema.Attribute.String & Schema.Attribute.Required;
+    start_year: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    start_month: Schema.Attribute.Integer & Schema.Attribute.Required;
+    end_year: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    end_month: Schema.Attribute.Integer & Schema.Attribute.Required;
     user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
@@ -620,9 +621,10 @@ export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
     singularName: 'industry';
     pluralName: 'industries';
     displayName: 'Industries';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -631,6 +633,7 @@ export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
   };
   attributes: {
     name: Schema.Attribute.String &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -665,7 +668,7 @@ export interface ApiJobJob extends Struct.CollectionTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     job_title: Schema.Attribute.String & Schema.Attribute.Required;
@@ -731,7 +734,7 @@ export interface ApiSchoolSchool extends Struct.CollectionTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     level: Schema.Attribute.String & Schema.Attribute.Required;
@@ -767,7 +770,7 @@ export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     skill_name: Schema.Attribute.String & Schema.Attribute.Required;

@@ -9,7 +9,8 @@ export default factories.createCoreController('api::skill.skill', ({ strapi }) =
         const {id} = ctx.state.user;
     
         const response = await super.create(ctx);
-        const updatedResponse = await strapi.entityService.update('api::skill.skill', response.data.id, {
+        const updatedResponse = await strapi.db.query('api::skill.skill').update({
+            where: { id: response.data.id },
             data: {
                 user: id
             }

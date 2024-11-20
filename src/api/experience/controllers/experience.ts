@@ -9,7 +9,8 @@ export default factories.createCoreController('api::experience.experience', ({ s
         const {id} = ctx.state.user;
     
         const response = await super.create(ctx);
-        const updatedResponse = await strapi.entityService.update('api::experience.experience', response.data.id, {
+        const updatedResponse = await strapi.db.query('api::experience.experience').update({
+            where: { id: response.data.id },
             data: {
                 user: id
             }
@@ -19,6 +20,7 @@ export default factories.createCoreController('api::experience.experience', ({ s
     
     async my(ctx) {
         const { id } = ctx.state.user;
+        console.log(id);
         const response = await strapi.documents('api::experience.experience').findMany({
             filters: {
                 user: {

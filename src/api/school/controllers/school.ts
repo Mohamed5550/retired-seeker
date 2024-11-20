@@ -9,7 +9,8 @@ export default factories.createCoreController('api::school.school', ({ strapi })
         const {id} = ctx.state.user;
     
         const response = await super.create(ctx);
-        const updatedResponse = await strapi.entityService.update('api::school.school', response.data.id, {
+        const updatedResponse = await strapi.db.query('api::school.school').update({
+            where: { id: response.data.id },
             data: {
                 user: id
             }
