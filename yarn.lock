@@ -1833,34 +1833,6 @@
     semver "7.5.4"
     umzug "3.8.1"
 
-"@strapi/design-system@2.0.0-rc.11":
-  version "2.0.0-rc.11"
-  resolved "https://registry.npmjs.org/@strapi/design-system/-/design-system-2.0.0-rc.11.tgz"
-  integrity sha512-myHSOqRsWpXsM9jp9Jx/d8cj/K4MNs+LzAqAwE4+Sd9MuKnIfnOhe6J9hAT29TtimMerymScjOE8b1uyYy3l7w==
-  dependencies:
-    "@codemirror/lang-json" "6.0.1"
-    "@floating-ui/react-dom" "2.1.0"
-    "@internationalized/date" "3.5.4"
-    "@internationalized/number" "3.5.3"
-    "@radix-ui/react-accordion" "1.1.2"
-    "@radix-ui/react-alert-dialog" "1.0.5"
-    "@radix-ui/react-avatar" "1.0.4"
-    "@radix-ui/react-checkbox" "1.0.4"
-    "@radix-ui/react-dialog" "1.0.5"
-    "@radix-ui/react-dismissable-layer" "1.0.5"
-    "@radix-ui/react-dropdown-menu" "2.0.6"
-    "@radix-ui/react-focus-scope" "1.0.4"
-    "@radix-ui/react-popover" "1.0.7"
-    "@radix-ui/react-progress" "1.0.3"
-    "@radix-ui/react-radio-group" "1.1.3"
-    "@radix-ui/react-scroll-area" "1.0.5"
-    "@radix-ui/react-switch" "1.0.3"
-    "@radix-ui/react-tabs" "1.0.4"
-    "@radix-ui/react-tooltip" "1.0.7"
-    "@strapi/ui-primitives" "2.0.0-rc.11"
-    "@uiw/react-codemirror" "4.22.2"
-    react-remove-scroll "2.5.10"
-
 "@strapi/design-system@2.0.0-rc.12":
   version "2.0.0-rc.12"
   resolved "https://registry.npmjs.org/@strapi/design-system/-/design-system-2.0.0-rc.12.tgz"
@@ -1933,12 +1905,7 @@
     react-redux "8.1.3"
     yup "0.32.9"
 
-"@strapi/icons@^2.0.0 || ^2.0.0-beta || ^2.0.0-alpha", "@strapi/icons@2.0.0-rc.11":
-  version "2.0.0-rc.11"
-  resolved "https://registry.npmjs.org/@strapi/icons/-/icons-2.0.0-rc.11.tgz"
-  integrity sha512-Uu3WHKJDjcJCPDengy3uyillKhd/16A/L3EdezaYdBsHK9bgpPiPKubi6VJJAGQXUD+ysr+RUG5uD23jTDfN6A==
-
-"@strapi/icons@2.0.0-rc.12":
+"@strapi/icons@^2.0.0 || ^2.0.0-beta || ^2.0.0-alpha", "@strapi/icons@2.0.0-rc.12":
   version "2.0.0-rc.12"
   resolved "https://registry.npmjs.org/@strapi/icons/-/icons-2.0.0-rc.12.tgz"
   integrity sha512-Qt5WQ9fjS1Xh7F8Elrlf3ACJGwCjogZ7xFHl/xZNUgAueZb7OYsVL6Aclr/xAJe8cJP5ohpB0c6FI3JoyjcnHQ==
@@ -1989,23 +1956,23 @@
     qs "6.11.1"
     sift "16.0.1"
 
-"@strapi/plugin-cloud@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.npmjs.org/@strapi/plugin-cloud/-/plugin-cloud-5.1.0.tgz"
-  integrity sha512-bTS771AMs/oICdABxVdo4LTmUDEllGiZa18TwpyYQnkuMQR/v5bq910PI00Incwoel0EYArdKu2YAJIYsM9DEA==
+"@strapi/plugin-cloud@5.3.0":
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/@strapi/plugin-cloud/-/plugin-cloud-5.3.0.tgz"
+  integrity sha512-Y30elqf+SxYfm+XgmrfwgIUFstWVe2rkjoEO00/5P+hsMCOBwwiX1Tx0nAn9AnXQ9EsRz3VwKlQNWCbg6v9EFQ==
   dependencies:
-    "@strapi/design-system" "2.0.0-rc.11"
-    "@strapi/icons" "2.0.0-rc.11"
+    "@strapi/design-system" "2.0.0-rc.12"
+    "@strapi/icons" "2.0.0-rc.12"
     react-intl "6.6.2"
 
-"@strapi/plugin-users-permissions@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.npmjs.org/@strapi/plugin-users-permissions/-/plugin-users-permissions-5.1.0.tgz"
-  integrity sha512-ZSBY0xNKoPKPcRxyAaWILYiH+2eJGzuAtuRT3NbcyK/tQfrSLKbtPVWVgPSN2yEJZ2YDqAKSgHGqrQUgfinn4w==
+"@strapi/plugin-users-permissions@5.3.0":
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/@strapi/plugin-users-permissions/-/plugin-users-permissions-5.3.0.tgz"
+  integrity sha512-6NBD8xOq19P3rE0MChhaiLB3LSpbm1KaUcsM8qqkkr8yfp/HGASACVCgqtn6W4VssHpaT8j5cdshE+bn+rHC3A==
   dependencies:
-    "@strapi/design-system" "2.0.0-rc.11"
-    "@strapi/icons" "2.0.0-rc.11"
-    "@strapi/utils" "5.1.0"
+    "@strapi/design-system" "2.0.0-rc.12"
+    "@strapi/icons" "2.0.0-rc.12"
+    "@strapi/utils" "5.3.0"
     bcryptjs "2.4.3"
     formik "2.4.5"
     grant-koa "5.4.8"
@@ -2159,33 +2126,6 @@
     prettier "3.3.3"
     typescript "5.3.2"
 
-"@strapi/ui-primitives@2.0.0-rc.11":
-  version "2.0.0-rc.11"
-  resolved "https://registry.npmjs.org/@strapi/ui-primitives/-/ui-primitives-2.0.0-rc.11.tgz"
-  integrity sha512-8lLIs338IxfLX5ga9gpoH7ORYwk3Hdpify+emur+FQInwCcr99BfBBqYNCdPoe0fcWn2hyUIyngwjVvfjcCZfg==
-  dependencies:
-    "@radix-ui/number" "1.0.1"
-    "@radix-ui/primitive" "1.0.1"
-    "@radix-ui/react-collection" "1.0.3"
-    "@radix-ui/react-compose-refs" "1.0.1"
-    "@radix-ui/react-context" "1.0.1"
-    "@radix-ui/react-direction" "1.0.1"
-    "@radix-ui/react-dismissable-layer" "1.0.5"
-    "@radix-ui/react-focus-guards" "1.0.1"
-    "@radix-ui/react-focus-scope" "1.0.4"
-    "@radix-ui/react-id" "1.0.1"
-    "@radix-ui/react-popper" "1.1.3"
-    "@radix-ui/react-portal" "1.0.4"
-    "@radix-ui/react-primitive" "1.0.3"
-    "@radix-ui/react-slot" "1.0.2"
-    "@radix-ui/react-use-callback-ref" "1.0.1"
-    "@radix-ui/react-use-controllable-state" "1.0.1"
-    "@radix-ui/react-use-layout-effect" "1.0.1"
-    "@radix-ui/react-use-previous" "1.0.1"
-    "@radix-ui/react-visually-hidden" "1.0.3"
-    aria-hidden "1.2.4"
-    react-remove-scroll "2.5.10"
-
 "@strapi/ui-primitives@2.0.0-rc.12":
   version "2.0.0-rc.12"
   resolved "https://registry.npmjs.org/@strapi/ui-primitives/-/ui-primitives-2.0.0-rc.12.tgz"
@@ -2242,26 +2182,10 @@
     sharp "0.32.6"
     yup "0.32.9"
 
-"@strapi/utils@^5.4.0":
+"@strapi/utils@^5.3.0":
   version "5.4.0"
   resolved "https://registry.npmjs.org/@strapi/utils/-/utils-5.4.0.tgz"
   integrity sha512-aLKiVKxi6HUW5tYWxGz8O1h+PuFCXLsO/p4XRbUbXS5nZcL4WGvHa5CmTi7FKWQLq0IgG8vo7ZDWAMvzfW3Wnw==
-  dependencies:
-    "@sindresorhus/slugify" "1.1.0"
-    date-fns "2.30.0"
-    execa "5.1.1"
-    http-errors "2.0.0"
-    lodash "4.17.21"
-    node-machine-id "1.1.12"
-    p-map "4.0.0"
-    preferred-pm "3.1.2"
-    yup "0.32.9"
-    zod "^3.22.4"
-
-"@strapi/utils@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.npmjs.org/@strapi/utils/-/utils-5.1.0.tgz"
-  integrity sha512-dPb4JmEsNVYA4vtNq4QtDL7NAQa0DrsdZQOWGrLM62iLbaclBPzpSgsxxzv4RCTD3z07sfrLVeffjjt7VbyXog==
   dependencies:
     "@sindresorhus/slugify" "1.1.0"
     date-fns "2.30.0"
