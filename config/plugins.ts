@@ -38,7 +38,7 @@ module.exports = ({ env }) => ({
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'http://localhost:3000'],  // Allow connections from localhost:3000
+          'connect-src': ["'self'", 'http://localhost:3000', 'https://seeker-orpin.vercel.app'],  // Allow connections from localhost:3000
           'img-src': ["'self'", 'data:', 'blob:'],
           'media-src': ["'self'", 'data:', 'blob:'],
           'default-src': ["'self'"],
