@@ -1,5 +1,5 @@
 {
-  "name": "redired-seeker",
+  "name": "my-strapi-project",
   "version": "0.1.0",
   "private": true,
   "description": "A Strapi application",
@@ -7,17 +7,17 @@
     "build": "strapi build",
     "deploy": "strapi deploy",
     "develop": "strapi develop",
+    "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.3.0",
-    "@strapi/plugin-users-permissions": "5.3.0",
-    "@strapi/strapi": "5.3.0",
-    "@strapi/utils": "^5.3.0",
+    "@strapi/plugin-cloud": "5.4.1",
+    "@strapi/plugin-users-permissions": "5.4.1",
+    "@strapi/strapi": "5.4.1",
     "better-sqlite3": "11.3.0",
-    "firebase-admin": "^12.7.0",
-    "firebase-functions": "^6.1.0",
+    "fs-extra": "^10.0.0",
+    "mime-types": "^2.1.27",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -27,7 +27,6 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "firebase-tools": "^13.23.0",
     "typescript": "^5"
   },
   "engines": {
@@ -35,6 +34,6 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "cc9dc8f4-2059-49ca-9cef-e98787a7c4bc"
+    "uuid": "ecce06e4-5eb2-4bf7-bbbe-1f081b1bd0bb"
   }
 }
