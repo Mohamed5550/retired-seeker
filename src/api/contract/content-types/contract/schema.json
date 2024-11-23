@@ -52,6 +52,12 @@
     },
     "end_date": {
       "type": "date"
+    },
+    "months_paid": {
+      "displayName": "months_paid",
+      "type": "component",
+      "repeatable": true,
+      "component": "contracts-components.months-paid"
     }
   }
 }

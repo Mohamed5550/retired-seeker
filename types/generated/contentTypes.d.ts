@@ -440,6 +440,10 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
       'api::contract.contract'
     > &
       Schema.Attribute.Private;
+    months_paid: Schema.Attribute.Component<
+      'contracts-components.months-paid',
+      true
+    >;
     publishedAt: Schema.Attribute.DateTime;
     start_date: Schema.Attribute.Date;
     updatedAt: Schema.Attribute.DateTime;

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_contracts_components_months_paids",
+  "info": {
+    "displayName": "months_paid",
+    "icon": "check",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "month": {
+      "type": "string"
+    },
+    "payment_status": {
+      "type": "enumeration",
+      "enum": [
+        "paid",
+        "not paid"
+      ]
+    }
+  }
+}
