@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contract",
     "pluralName": "contracts",
-    "displayName": "Contracts"
+    "displayName": "Contracts",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -45,6 +46,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
     }
   }
 }
