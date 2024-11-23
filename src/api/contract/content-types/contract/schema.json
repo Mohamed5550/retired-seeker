@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contracts",
+  "info": {
+    "singularName": "contract",
+    "pluralName": "contracts",
+    "displayName": "Contracts"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "compeny": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "company_contracts"
+    },
+    "employee": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "employee_contracts"
+    },
+    "contract_type": {
+      "type": "enumeration",
+      "enum": [
+        "short term",
+        "long term"
+      ]
+    },
+    "durations_in_months": {
+      "type": "integer"
+    },
+    "contract_status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "started",
+        "in progress",
+        "completed",
+        "canceled"
+      ]
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

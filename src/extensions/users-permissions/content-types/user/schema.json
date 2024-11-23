@@ -224,6 +224,18 @@
       "relation": "oneToMany",
       "target": "api::school.school",
       "mappedBy": "user"
+    },
+    "company_contracts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contract.contract",
+      "mappedBy": "compeny"
+    },
+    "employee_contracts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contract.contract",
+      "mappedBy": "employee"
     }
   }
 }

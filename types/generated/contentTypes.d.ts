@@ -404,6 +404,47 @@ export interface ApiCertificateCertificate extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContractContract extends Struct.CollectionTypeSchema {
+  collectionName: 'contracts';
+  info: {
+    displayName: 'Contracts';
+    pluralName: 'contracts';
+    singularName: 'contract';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    compeny: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    contract_status: Schema.Attribute.Enumeration<
+      ['pending', 'started', 'in progress', 'completed', 'canceled']
+    >;
+    contract_type: Schema.Attribute.Enumeration<['short term', 'long term']>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    durations_in_months: Schema.Attribute.Integer;
+    employee: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract.contract'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiExperienceExperience extends Struct.CollectionTypeSchema {
   collectionName: 'experiences';
   info: {
@@ -1092,6 +1133,10 @@ export interface PluginUsersPermissionsUser
       'api::certificate.certificate'
     >;
     city: Schema.Attribute.String;
+    company_contracts: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract.contract'
+    >;
     company_name: Schema.Attribute.String;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1108,6 +1153,10 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    employee_contracts: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract.contract'
+    >;
     experience_in_years: Schema.Attribute.Integer;
     experiences: Schema.Attribute.Relation<
       'oneToMany',
@@ -1177,6 +1226,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::certificate.certificate': ApiCertificateCertificate;
+      'api::contract.contract': ApiContractContract;
       'api::experience.experience': ApiExperienceExperience;
       'api::industry.industry': ApiIndustryIndustry;
       'api::job.job': ApiJobJob;
