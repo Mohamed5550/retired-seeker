@@ -3,6 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi'
+import { isNumber } from 'util';
 
 export default factories.createCoreController('api::job.job', ({ strapi }) =>  ({
 
@@ -72,8 +73,8 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
         const jobType = ctx.query.job_type;
         const workPlace = ctx.query.work_place;
         const industryId = ctx.query.industry_id;
-        const experienceFrom = ctx.query.experience_from;
-        const experienceTo = ctx.query.experience_to;
+        const experienceFrom = ctx.query.experience_from as number;
+        const experienceTo = ctx.query.experience_to as number;
 
         let filters = [];
 
@@ -96,7 +97,7 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
             })
         }
 
-        if(experienceFrom) {
+        if(experienceFrom && !isNaN(experienceFrom)) {
             filters.push({
                 max_experience_years: {
                     $gte: experienceFrom
@@ -104,7 +105,7 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
             })
         }
 
-        if(experienceTo) {
+        if(experienceTo && !isNaN(experienceTo)) {
             filters.push({
                 min_experience_years: {
                     $lte: experienceTo
