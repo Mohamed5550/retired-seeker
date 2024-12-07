@@ -32,6 +32,7 @@ export default {
             path: "/jobs/search",
             handler: 'job.search',
             config: {
+                auth: false,
                 prefix: "",
                 policies: []
             }
