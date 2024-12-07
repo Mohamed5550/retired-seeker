@@ -73,9 +73,6 @@
       "type": "string",
       "required": true
     },
-    "job_title": {
-      "type": "string"
-    },
     "company_name": {
       "type": "string"
     },
@@ -236,6 +233,12 @@
       "relation": "oneToMany",
       "target": "api::contract.contract",
       "mappedBy": "employee"
+    },
+    "job_title": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::industry.industry",
+      "inversedBy": "industry_users"
     }
   }
 }

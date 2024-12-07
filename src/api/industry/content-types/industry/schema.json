@@ -36,6 +36,12 @@
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user",
       "mappedBy": "industry"
+    },
+    "industry_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "job_title"
     }
   }
 }

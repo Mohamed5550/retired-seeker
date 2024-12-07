@@ -514,6 +514,10 @@ export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    industry_users: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
     jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
@@ -1179,7 +1183,7 @@ export interface PluginUsersPermissionsUser
     >;
     industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
     instagram_url: Schema.Attribute.Text;
-    job_title: Schema.Attribute.String;
+    job_title: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
     last_name: Schema.Attribute.String & Schema.Attribute.Required;
     linkedin_url: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
