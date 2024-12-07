@@ -70,7 +70,11 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
     async search(ctx) {
         const query = ctx.query.query as string;
         const jobType = ctx.query.job_type;
-        const workPlace = ctx.query.work_place  ;
+        const workPlace = ctx.query.work_place;
+        const industryId = ctx.query.industry_id;
+        const experienceFrom = ctx.query.experience_from;
+        const experienceTo = ctx.query.experience_to;
+
         let filters = [];
 
         if(jobType) {
@@ -81,6 +85,30 @@ export default factories.createCoreController('api::job.job', ({ strapi }) =>  (
         if(workPlace) {
             filters.push({
                 work_place: workPlace
+            })
+        }
+
+        if(industryId) {
+            filters.push({
+                industry: {
+                    id: industryId
+                }
+            })
+        }
+
+        if(experienceFrom) {
+            filters.push({
+                max_experience_years: {
+                    $gte: experienceFrom
+                }
+            })
+        }
+
+        if(experienceTo) {
+            filters.push({
+                min_experience_years: {
+                    $lte: experienceTo
+                }
             })
         }
         
